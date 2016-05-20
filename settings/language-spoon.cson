@@ -1,8 +1,6 @@
-'.source.coffee, .source.litcoffee, .source.coffee.md':
+'.source.spoon':
   'editor':
     'commentStart': '# '
-'.source.coffee':
-  'editor':
     'autoIndentOnPaste': false
     'increaseIndentPattern': '(?x)
       ^\\s*
