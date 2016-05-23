@@ -120,7 +120,7 @@
         'name': 'punctuation.definition.string.begin.js'
   }
   {
-    'match': '\\b(?<![\\.\\$])(break|by|catch|continue|else|finally|for|in|of|if|return|switch|then|throw|try|unless|when|while|until|loop|do|(?<=for)\\s+own)(?!\\s*:)\\b'
+    'match': '\\b(?<![\\.\\$])(break|by|catch|continue|else|finally|for|in|to|if|return|switch|then|throw|try|unless|when|while|until|loop|do|(?<=for)\\s+own)(?!\\s*:)\\b'
     'name': 'keyword.control.spoon'
   }
   {
