@@ -2,50 +2,23 @@
 'name': 'Spoon'
 'fileTypes': [
   'spoon'
-  '_spoon'
 ]
 'firstLineMatch': '^#!.*\\bspoon'
 'patterns': [
+  {
+    'include': '#heredoc'
+  }
+  {
+    'include': '#string'
+  }
   {
     'captures':
       '1':
         'name': 'variable.parameter.function.spoon'
       '2':
         'name': 'storage.type.function.spoon'
-    'comment': 'match stuff like: a -> … '
     'match': '(\\([^()]*?\\))\\s*([=-]>)'
     'name': 'meta.inline.function.spoon'
-  }
-  {
-    'begin': '\'\'\''
-    'beginCaptures':
-      '0':
-        'name': 'punctuation.definition.string.begin.spoon'
-    'end': '\'\'\''
-    'endCaptures':
-      '0':
-        'name': 'punctuation.definition.string.end.spoon'
-    'name': 'string.quoted.heredoc.spoon'
-  }
-  {
-    'begin': '"""'
-    'beginCaptures':
-      '0':
-        'name': 'punctuation.definition.string.begin.spoon'
-    'end': '"""'
-    'endCaptures':
-      '0':
-        'name': 'punctuation.definition.string.end.spoon'
-    'name': 'string.quoted.double.heredoc.spoon'
-    'patterns': [
-      {
-        'match': '\\\\.'
-        'name': 'constant.character.escape.spoon'
-      }
-      {
-        'include': '#interpolated_spoon'
-      }
-    ]
   }
   {
     'begin': '`'
@@ -120,16 +93,12 @@
         'name': 'punctuation.definition.string.begin.js'
   }
   {
-    'match': '\\b(?<![\\.\\$])(break|by|catch|continue|else|finally|for|in|to|if|return|switch|then|throw|try|unless|when|while|until|loop|do|(?<=for)\\s+own)(?!\\s*:)\\b'
+    'match': '\\b(?<![\\.\\$])(break|by|catch|continue|else|finally|for|in|import|to|if|return|switch|then|throw|try|unless|when|while|until|loop|do|(?<=for)\\s+own)(?!\\s*:)\\b'
     'name': 'keyword.control.spoon'
   }
   {
-    'match': '(and|or|<<|>>>?|(?<!\\()\\/|[=!<>*%+\\-&^])?=(?!>)|[!%^*\\/~?:]|\\-?\\-(?!>)|\\+\\+?|<>|<|>|&&?|\\.\\.\\.?|\\|\\|?|\\b(?<![\\.\\$])(instanceof|new|delete|typeof|and|or|is|isnt|not|super)(?!\\s*:)\\b'
+    'match': '(and|or|<<|>>>?|(?<!\\()\\/|[=!<>*%+\\-&^])?=(?!>)|[!%^*\\/~?:]|\\-?\\-(?!>)|\\+\\+?|<>|<|>|&&?|\\.\\.\\.?|\\|\\|?|\\b(?<![\\.\\$])(instanceof|delete|typeof|and|or|is|isnt|not|super)(?!\\s*:)\\b'
     'name': 'keyword.operator.spoon'
-  }
-  {
-    'match': '\\b(?<![\\.\\$])(case|default|function|var|void|with|const|let|enum|export|import|native|__hasProp|__extends|__slice|__bind|__indexOf|implements|interface|package|private|protected|public|static|yield)(?!\\s*:)\\b'
-    'name': 'keyword.reserved.spoon'
   }
   {
     'match': '([a-zA-Z$_][-\\w$]*)\\s*(?!::)(?:(:)|((?:or|and|[-+\\/&%*?])?=)(?![>=]))(?!(\\s*\\(.*\\))?\\s*([=-]>))'
@@ -153,16 +122,10 @@
     'name': 'meta.variable.assignment.destructured.object.spoon'
     'patterns': [
       {
-        'include': '#variable_name'
+        'include': '#variable'
       }
       {
-        'include': '#instance_variable'
-      }
-      {
-        'include': '#single_quoted_string'
-      }
-      {
-        'include': '#double_quoted_string'
+        'include': '#string'
       }
       {
         'include': '#numeric'
@@ -181,16 +144,10 @@
     'name': 'meta.variable.assignment.destructured.array.spoon'
     'patterns': [
       {
-        'include': '#variable_name'
+        'include': '#variable'
       }
       {
-        'include': '#instance_variable'
-      }
-      {
-        'include': '#single_quoted_string'
-      }
-      {
-        'include': '#double_quoted_string'
+        'include': '#string'
       }
       {
         'include': '#numeric'
@@ -210,7 +167,7 @@
       '3':
         'name': 'variable.parameter.function.spoon'
       '4':
-        'name': 'unction.spoon'
+        'name': 'storage.type.function.spoon'
     'name': 'meta.function.spoon'
   }
   {
@@ -240,8 +197,8 @@
     'name': 'constant.language.null.spoon'
   }
   {
-    'match': '\\b(?<!\\.|::)extends(?!\\s*[:=])\\b'
-    'name': 'variable.language.spoon'
+    'match': '\\b(?<!\\.)self(?!\\s*[:=][^=])\\b'
+    'name': 'variable.language.self.spoon'
   }
   {
     'match': '\\b(?<!\\.)this(?!\\s*[:=][^=])\\b'
@@ -299,18 +256,94 @@
     'include': '#instance_variable'
   }
   {
-    'include': '#single_quoted_string'
-  }
-  {
-    'include': '#double_quoted_string'
-  }
-  {
     'include': '#numeric'
   }
 ]
 'repository':
-  'double_quoted_string':
+  'variable':
     'patterns': [
+      {
+        'include': '#instance_variable'
+        'include': '#variable_name'
+      }
+    ]
+  'instance_variable':
+    'patterns': [
+      {
+        'match': '(@)([a-zA-Z_\\$][-\\w]*)?'
+        'name': 'variable.other.readwrite.instance.spoon'
+      }
+    ]
+  'variable_name':
+    'patterns': [
+      {
+        'captures':
+          '1':
+            'name': 'variable.assignment.spoon'
+        'match': '([a-zA-Z\\$_][-\\w]*(\\.[-\\w]+)*)'
+        'name': 'variable.assignment.spoon'
+      }
+    ]
+  'numeric':
+    'patterns': [
+      {
+        'match': '(?<!\\$)\\b((0([box])[0-9a-fA-F]+)|([0-9]+(\\.[0-9]+)?(e[+\\-]?[0-9]+)?))\\b'
+        'name': 'constant.numeric.spoon'
+      }
+    ]
+  'heredoc':
+    'patterns': [
+      {
+        'begin': '\'\'\''
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.string.begin.spoon'
+        'end': '\'\'\''
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.string.end.spoon'
+        'name': 'string.quoted.heredoc.spoon'
+      }
+      {
+        'begin': '"""'
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.string.begin.spoon'
+        'end': '"""'
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.string.end.spoon'
+        'name': 'string.quoted.double.heredoc.spoon'
+        'patterns': [
+          {
+            'match': '\\\\.'
+            'name': 'constant.character.escape.spoon'
+          }
+          {
+            'include': '#interpolated_spoon'
+          }
+        ]
+      }
+    ]
+  'string':
+    'patterns': [
+      {
+        'begin': '\''
+        'beginCaptures':
+          '0':
+            'name': 'punctuation.definition.string.begin.spoon'
+        'end': '\''
+        'endCaptures':
+          '0':
+            'name': 'punctuation.definition.string.end.spoon'
+        'name': 'string.quoted.single.spoon'
+        'patterns': [
+          {
+            'match': '\\\\(x\\h{2}|[0-2][0-7]{0,2}|3[0-6][0-7]?|37[0-7]?|[4-7][0-7]?|.)'
+            'name': 'constant.character.escape.spoon'
+          }
+        ]
+      }
       {
         'begin': '"'
         'beginCaptures':
@@ -342,13 +375,6 @@
         'name': 'comment.line.number-sign.spoon'
       }
     ]
-  'instance_variable':
-    'patterns': [
-      {
-        'match': '(@)([a-zA-Z_\\$][-\\w]*)?'
-        'name': 'variable.other.readwrite.instance.spoon'
-      }
-    ]
   'interpolated_spoon':
     'patterns': [
       {
@@ -363,43 +389,6 @@
             'include': '$self'
           }
         ]
-      }
-    ]
-  'numeric':
-    'patterns': [
-      {
-        'match': '(?<!\\$)\\b((0([box])[0-9a-fA-F]+)|([0-9]+(\\.[0-9]+)?(e[+\\-]?[0-9]+)?))\\b'
-        'name': 'constant.numeric.spoon'
-      }
-    ]
-  'single_quoted_string':
-    'patterns': [
-      {
-        'begin': '\''
-        'beginCaptures':
-          '0':
-            'name': 'punctuation.definition.string.begin.spoon'
-        'end': '\''
-        'endCaptures':
-          '0':
-            'name': 'punctuation.definition.string.end.spoon'
-        'name': 'string.quoted.single.spoon'
-        'patterns': [
-          {
-            'match': '\\\\(x\\h{2}|[0-2][0-7]{0,2}|3[0-6][0-7]?|37[0-7]?|[4-7][0-7]?|.)'
-            'name': 'constant.character.escape.spoon'
-          }
-        ]
-      }
-    ]
-  'variable_name':
-    'patterns': [
-      {
-        'captures':
-          '1':
-            'name': 'variable.assignment.spoon'
-        'match': '([a-zA-Z\\$_][-\\w]*(\\.[-\\w]+)*)'
-        'name': 'variable.assignment.spoon'
       }
     ]
   'regex-character-class':
