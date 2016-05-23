@@ -1,7 +1,8 @@
 'scopeName': 'source.spoon'
-'name': 'Spoon'
+'name': 'spoonScript'
 'fileTypes': [
   'spoon'
+  '_spoon'
 ]
 'firstLineMatch': '^#!.*\\bspoon'
 'patterns': [
@@ -14,19 +15,6 @@
     'comment': 'match stuff like: a -> … '
     'match': '(\\([^()]*?\\))\\s*([=-]>)'
     'name': 'meta.inline.function.spoon'
-  }
-  {
-    'captures':
-      '1':
-        'name': 'keyword.operator.new.spoon'
-      '4':
-        'name': 'storage.type.class.spoon'
-      '6':
-        'name': 'entity.name.type.instance.spoon'
-      '7':
-        'name': 'entity.name.type.instance.spoon'
-    'match': '(new)\\s+(((class)(\\s+(\\w+(?:\\.\\w*)*))?)|(\\w+(?:\\.\\w*)*))'
-    'name': 'meta.class.instance.constructor'
   }
   {
     'begin': '\'\'\''
@@ -144,7 +132,7 @@
     'name': 'keyword.reserved.spoon'
   }
   {
-    'match': '([a-zA-Z$_][\\w$]*)\\s*(?!::)(?:(:)|((?:or|and|[-+\\/&%*?])?=)(?![>=]))(?!(\\s*\\(.*\\))?\\s*([=-]>))'
+    'match': '([a-zA-Z$_][-\\w$]*)\\s*(?!::)(?:(:)|((?:or|and|[-+\\/&%*?])?=)(?![>=]))(?!(\\s*\\(.*\\))?\\s*([=-]>))'
     'captures':
       '1':
         'name': 'variable.assignment.spoon'
@@ -213,7 +201,7 @@
     'match': '''(?x)
                 (?<=^|\\s)
                 (?=@?[a-zA-Z\\$_])
-                @?([a-zA-Z\\$_]\\w*)(\\$|:|\\.)?\\s*
+                @?([a-zA-Z\\$_][-\\w]*)(\\$|:|\\.)?\\s*
                 (?=[:=](\\s*\\(.*\\))?\\s*([=-]>))
               '''
     'captures':
@@ -222,19 +210,19 @@
       '3':
         'name': 'variable.parameter.function.spoon'
       '4':
-        'name': 'storage.type.function.spoon'
+        'name': 'unction.spoon'
     'name': 'meta.function.spoon'
   }
   {
-    'match': '\\b(?<!\\.|::)(true|on|yes)(?!\\s*[:=][^=])\\b'
+    'match': '\\b(?<!\\.|::)(true)(?!\\s*[:=][^=])\\b'
     'name': 'constant.language.boolean.true.spoon'
   }
   {
-    'match': '\\b(?<!\\.|::)(false|off|no)(?!\\s*[:=][^=])\\b'
+    'match': '\\b(?<!\\.|::)(false)(?!\\s*[:=][^=])\\b'
     'name': 'constant.language.boolean.false.spoon'
   }
   {
-    'match': '@?\\b(?!class|subclass|extends|decodeURI(Component)?|encodeURI(Component)?|eval|parse(Float|Int)|require)(\\w+)(?=\\s+(?!(of|in|then|is|isnt|and|or|for|else|when|not|if)\\b)(?=(@?\\w+|\\->|\\-\\d|\\[|\\{|\"|\'))|(?=\\())'
+    'match': '@?\\b(?!class|extends|decodeURI(Component)?|encodeURI(Component)?|parse(Float|Int)|import)([-\\w]+)(?=\\s+(?!(to|in|is|isnt|and|or|for|else|when|not|if)\\b)(?=(@?[-\\w]+|\\->|\\-\\d|\\[|\\{|\"|\'))|(?=[\\(!]))'
     'captures':
       '4':
         'name': 'entity.name.function.spoon'
@@ -242,6 +230,10 @@
   {
     'match': '[=-]>'
     'name': 'storage.type.function.spoon'
+  }
+  {
+    'match': '\\\\:?.*$'
+    'name': 'storage.type.annotation.spoon'
   }
   {
     'match': '\\b(?<!\\.|::)null(?!\\s*[:=][^=])\\b'
@@ -278,54 +270,6 @@
         'name': 'entity.other.inherited-class.spoon'
     'match': '(?<=\\s|^|\\[|\\()(class\\b)\\s+(@?[a-zA-Z\\$_][\\w\\.]*)?(?:\\s+(extends)\\s+(@?[a-zA-Z\\$\\._][\\w\\.]*))?'
     'name': 'meta.class.spoon'
-  }
-  {
-    'match': '\\b(debugger|\\\\)\\b'
-    'name': 'keyword.other.spoon'
-  }
-  {
-    'match': '\\b(Array|ArrayBuffer|Blob|Boolean|Date|document|Function|Int(8|16|32|64)Array|Math|Map|Number|Object|Proxy|RegExp|Set|String|WeakMap|window|Uint(8|16|32|64)Array|XMLHttpRequest)\\b'
-    'name': 'support.class.spoon'
-  }
-  {
-    'match': '\\b(console)\\b'
-    'name': 'entity.name.type.object.spoon'
-  }
-  {
-    'match': '((?<=console\\.)(debug|warn|info|log|error|time|timeEnd|assert))\\b'
-    'name': 'support.function.console.spoon'
-  }
-  {
-    'match': '\\b(decodeURI(Component)?|encodeURI(Component)?|eval|parse(Float|Int)|require)\\b'
-    'name': 'support.function.spoon'
-  }
-  {
-    'match': '((?<=\\.)(apply|call|concat|every|filter|forEach|from|hasOwnProperty|indexOf|isPrototypeOf|join|lastIndexOf|map|of|pop|propertyIsEnumerable|push|reduce(Right)?|reverse|shift|slice|some|sort|splice|to(Locale)?String|unshift|valueOf))\\b'
-    'name': 'support.function.method.array.spoon'
-  }
-  {
-    'match': '((?<=Array\\.)(isArray))\\b'
-    'name': 'support.function.static.array.spoon'
-  }
-  {
-    'match': '((?<=Object\\.)(create|definePropert(ies|y)|freeze|getOwnProperty(Descriptors?|Names)|getProperty(Descriptor|Names)|getPrototypeOf|is(Extensible|Frozen|Sealed)?|isnt|keys|preventExtensions|seal))\\b'
-    'name': 'support.function.static.object.spoon'
-  }
-  {
-    'match': '((?<=Math\\.)(abs|acos|acosh|asin|asinh|atan|atan2|atanh|ceil|cos|cosh|exp|expm1|floor|hypot|log|log10|log1p|log2|max|min|pow|random|round|sign|sin|sinh|sqrt|tan|tanh|trunc))\\b'
-    'name': 'support.function.static.math.spoon'
-  }
-  {
-    'match': '((?<=Number\\.)(is(Finite|Integer|NaN)|toInteger))\\b'
-    'name': 'support.function.static.number.spoon'
-  }
-  {
-    'match': '(?<!\\.)\\b(module|exports|__filename|__dirname|global|process)(?!\\s*:)\\b'
-    'name': 'support.variable.spoon'
-  }
-  {
-    'match': '\\b(Infinity|NaN|undefined)\\b'
-    'name': 'constant.language.spoon'
   }
   {
     'match': '\\;'
@@ -401,7 +345,7 @@
   'instance_variable':
     'patterns': [
       {
-        'match': '(@)([a-zA-Z_\\$]\\w*)?'
+        'match': '(@)([a-zA-Z_\\$][-\\w]*)?'
         'name': 'variable.other.readwrite.instance.spoon'
       }
     ]
@@ -454,7 +398,7 @@
         'captures':
           '1':
             'name': 'variable.assignment.spoon'
-        'match': '([a-zA-Z\\$_]\\w*(\\.\\w+)*)'
+        'match': '([a-zA-Z\\$_][-\\w]*(\\.[-\\w]+)*)'
         'name': 'variable.assignment.spoon'
       }
     ]
