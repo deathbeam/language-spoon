@@ -13,9 +13,6 @@
     'include': '#comment'
   }
   {
-    'include': '#function'
-  }
-  {
     'include': '#heredoc'
   }
   {
@@ -25,10 +22,22 @@
     'include': '#regexp'
   }
   {
-    'include': '#assign'
+    'include': '#annotations'
+  }
+  {
+    'include': '#keywords'
+  }
+  {
+    'include': '#operator'
   }
   {
     'include': '#class'
+  }
+  {
+    'include': '#function'
+  }
+  {
+    'include': '#assign'
   }
   {
     'include': '#instance_variable'
@@ -36,51 +45,75 @@
   {
     'include': '#numeric'
   }
-  {
-    'include': '#keywords'
-  }
-  {
-    'include': '#operators'
-  }
-  {
-    'match': '\\\\:?.*$'
-    'name': 'storage.type.annotation.spoon'
-  }
 ]
 
 'repository':
+  'annotations':
+    'patterns': [
+      {
+        'begin': '(\\\\:?[^ (]+)(\\()'
+        'beginCaptures':
+          '1':
+            'name': 'storage.type.annotation.spoon'
+          '2':
+            'name': 'punctuation.definition.annotation-arguments.begin.bracket.round.spoon'
+        'end': '(\\))'
+        'endCaptures':
+          '1':
+            'name': 'punctuation.definition.annotation-arguments.end.bracket.round.spoon'
+        'name': 'meta.declaration.annotation.spoon'
+        'patterns': [
+          {
+            'captures':
+              '1':
+                'name': 'constant.other.key.spoon'
+              '2':
+                'name': 'keyword.operator.assignment.spoon'
+            'match': '(\\w*)\\s*(=)'
+          }
+          {
+            'include': '$self'
+          }
+          {
+            'match': ','
+            'name': 'punctuation.separator.delimiter.spoon'
+          }
+        ]
+      }
+      {
+        'match': '\\\\:?\\w*'
+        'name': 'storage.type.annotation.spoon'
+      }
+    ]
+
   'keywords':
     'patterns': [
       {
-        'match': '\\b(?<![\\.\\$])(break|by|catch|continue|else|finally|for|in|import|to|if|return|switch|then|throw|try|unless|when|while|until|loop|do|(?<=for)\\s+own)(?!\\s*:)\\b'
+        'match': '\\b[^-](break|catch|continue|else|for|in|import|to|if|return|switch|throw|try|unless|until|when|while|loop|do)[^-]\\b'
         'name': 'keyword.control.spoon'
       }
       {
-        'match': '\\b(?<!\\.|::)(true)(?!\\s*[:=][^=])\\b'
-        'name': 'constant.language.boolean.true.spoon'
+        'match': '\\b[^-](true|false|null)[^-]\\b'
+        'name': 'constant.language.spoon'
       }
       {
-        'match': '\\b(?<!\\.|::)(false)(?!\\s*[:=][^=])\\b'
-        'name': 'constant.language.boolean.false.spoon'
-      }
-      {
-        'match': '\\b(?<!\\.|::)null(?!\\s*[:=][^=])\\b'
-        'name': 'constant.language.null.spoon'
-      }
-      {
-        'match': '\\b(?<!\\.)self(?!\\s*[:=][^=])\\b'
+        'match': '\\b[^-](self)[^-]\\b'
         'name': 'variable.language.self.spoon'
       }
       {
-        'match': '\\b(?<!\\.)this(?!\\s*[:=][^=])\\b'
+        'match': '\\b[^-](this)[^-]\\b'
         'name': 'variable.language.this.spoon'
+      }
+      {
+        'match': '\\b[^-](super)[^-]\\b'
+        'name': 'variable.language.super.spoon'
       }
     ]
 
   'operators':
     'patterns': [
       {
-        'match': '(and|or|<<|>>>?|(?<!\\()\\/|[=!<>*%+\\-&^])?=(?!>)|[!%^*\\/~?:]|\\-?\\-(?!>)|\\+\\+?|<>|<|>|&&?|\\.\\.\\.?|\\|\\|?|\\b(?<![\\.\\$])(and|or|is|isnt|not|super)(?!\\s*:)\\b'
+        'match': '(and|or|<<|>>>?|(?<!\\()\\/|[=!<>*%+\\-&^])?=(?!>)|[!%^*\\/~?:]|\\-?\\-(?!>)|\\+\\+?|<>|<|>|&&?|\\.\\.\\.?|\\|\\|?|\\b(?<![\\.\\$])(and|or|is|isnt|not)(?!\\s*:)\\b'
         'name': 'keyword.operator.spoon'
       }
       {
