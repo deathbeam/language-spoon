@@ -67,6 +67,14 @@
         'match': '\\b(?<!\\.|::)null(?!\\s*[:=][^=])\\b'
         'name': 'constant.language.null.spoon'
       }
+      {
+        'match': '\\b(?<!\\.)self(?!\\s*[:=][^=])\\b'
+        'name': 'variable.language.self.spoon'
+      }
+      {
+        'match': '\\b(?<!\\.)this(?!\\s*[:=][^=])\\b'
+        'name': 'variable.language.this.spoon'
+      }
     ]
 
   'operators':
@@ -94,18 +102,6 @@
       {
         'match': '\\[|\\]'
         'name': 'meta.brace.square.spoon'
-      }
-    ]
-
-  'variables':
-    'patterns': [
-      {
-        'match': '\\b(?<!\\.)self(?!\\s*[:=][^=])\\b'
-        'name': 'variable.language.self.spoon'
-      }
-      {
-        'match': '\\b(?<!\\.)this(?!\\s*[:=][^=])\\b'
-        'name': 'variable.language.this.spoon'
       }
     ]
 
