@@ -89,23 +89,23 @@
   'keywords':
     'patterns': [
       {
-        'match': '\\b[^-](break|catch|continue|else|for|in|import|to|if|return|switch|throw|try|unless|until|when|while|loop|do)[^-]\\b'
+        'match': '(?:(?:\\b[^-])|(?:^\\s*))(break|catch|continue|else|for|in|import|to|if|return|switch|throw|try|unless|until|when|while|loop|do)(?:(?:[^-]\\b)|(?:\\s*$))'
         'name': 'keyword.control.spoon'
       }
       {
-        'match': '\\b[^-](true|false|null)[^-]\\b'
+        'match': '(?:(?:\\b[^-])|(?:^\\s*))(true|false|null)(?:(?:[^-]\\b)|(?:\\s*$))'
         'name': 'constant.language.spoon'
       }
       {
-        'match': '\\b[^-](self)[^-]\\b'
+        'match': '(?:(?:\\b[^-])|(?:^\\s*))(self)(?:(?:[^-]\\b)|(?:\\s*$))'
         'name': 'variable.language.self.spoon'
       }
       {
-        'match': '\\b[^-](this)[^-]\\b'
+        'match': '(?:(?:\\b[^-])|(?:^\\s*))(this)(?:(?:[^-]\\b)|(?:\\s*$))'
         'name': 'variable.language.this.spoon'
       }
       {
-        'match': '\\b[^-](super)[^-]\\b'
+        'match': '(?:(?:\\b[^-])|(?:^\\s*))(super)(?:(?:[^-]\\b)|(?:\\s*$))'
         'name': 'variable.language.super.spoon'
       }
     ]
