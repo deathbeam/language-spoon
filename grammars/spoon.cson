@@ -1,9 +1,13 @@
-'scopeName': 'source.spoon'
 'name': 'Spoon'
+'comment': 'Spoon language 0.1.0 syntax'
+'scopeName': 'source.spoon'
+'firstLineMatch': '^#!.*\\bspoon'
+
 'fileTypes': [
   'spoon'
+  'Spoonfile'
 ]
-'firstLineMatch': '^#!.*\\bspoon'
+
 'patterns': [
   {
     'include': '#comment'
@@ -21,7 +25,7 @@
     'include': '#regexp'
   }
   {
-    'include': '#destructured_assign'
+    'include': '#assign'
   }
   {
     'include': '#class'
@@ -33,69 +37,78 @@
     'include': '#numeric'
   }
   {
-    'match': '\\b(?<![\\.\\$])(break|by|catch|continue|else|finally|for|in|import|to|if|return|switch|then|throw|try|unless|when|while|until|loop|do|(?<=for)\\s+own)(?!\\s*:)\\b'
-    'name': 'keyword.control.spoon'
+    'include': '#keywords'
   }
   {
-    'match': '(and|or|<<|>>>?|(?<!\\()\\/|[=!<>*%+\\-&^])?=(?!>)|[!%^*\\/~?:]|\\-?\\-(?!>)|\\+\\+?|<>|<|>|&&?|\\.\\.\\.?|\\|\\|?|\\b(?<![\\.\\$])(and|or|is|isnt|not|super)(?!\\s*:)\\b'
-    'name': 'keyword.operator.spoon'
-  }
-  {
-    'match': '([a-zA-Z$_][-\\w$]*)\\s*(?!::)(?:(:)|((?:or|and|[-+\\/&%*?])?=)(?![>=]))(?!(\\s*\\(.*\\))?\\s*([=-]>))'
-    'captures':
-      '1':
-        'name': 'variable.assignment.spoon'
-      '2':
-        'name': 'punctuation.separator.key-value'
-      '3':
-        'name': 'keyword.operator.spoon'
-  }
-  {
-    'match': '\\b(?<!\\.|::)(true)(?!\\s*[:=][^=])\\b'
-    'name': 'constant.language.boolean.true.spoon'
-  }
-  {
-    'match': '\\b(?<!\\.|::)(false)(?!\\s*[:=][^=])\\b'
-    'name': 'constant.language.boolean.false.spoon'
+    'include': '#operators'
   }
   {
     'match': '\\\\:?.*$'
     'name': 'storage.type.annotation.spoon'
   }
-  {
-    'match': '\\b(?<!\\.|::)null(?!\\s*[:=][^=])\\b'
-    'name': 'constant.language.null.spoon'
-  }
-  {
-    'match': '\\b(?<!\\.)self(?!\\s*[:=][^=])\\b'
-    'name': 'variable.language.self.spoon'
-  }
-  {
-    'match': '\\b(?<!\\.)this(?!\\s*[:=][^=])\\b'
-    'name': 'variable.language.this.spoon'
-  }
-  {
-    'match': ','
-    'name': 'meta.delimiter.object.comma.spoon'
-  }
-  {
-    'match': '\\.'
-    'name': 'meta.delimiter.method.period.spoon'
-  }
-  {
-    'match': '\\{|\\}'
-    'name': 'meta.brace.curly.spoon'
-  }
-  {
-    'match': '\\(|\\)'
-    'name': 'meta.brace.round.spoon'
-  }
-  {
-    'match': '\\[|\\]\\s*'
-    'name': 'meta.brace.square.spoon'
-  }
 ]
+
 'repository':
+  'keywords':
+    'patterns': [
+      {
+        'match': '\\b(?<![\\.\\$])(break|by|catch|continue|else|finally|for|in|import|to|if|return|switch|then|throw|try|unless|when|while|until|loop|do|(?<=for)\\s+own)(?!\\s*:)\\b'
+        'name': 'keyword.control.spoon'
+      }
+      {
+        'match': '\\b(?<!\\.|::)(true)(?!\\s*[:=][^=])\\b'
+        'name': 'constant.language.boolean.true.spoon'
+      }
+      {
+        'match': '\\b(?<!\\.|::)(false)(?!\\s*[:=][^=])\\b'
+        'name': 'constant.language.boolean.false.spoon'
+      }
+      {
+        'match': '\\b(?<!\\.|::)null(?!\\s*[:=][^=])\\b'
+        'name': 'constant.language.null.spoon'
+      }
+    ]
+
+  'operators':
+    'patterns': [
+      {
+        'match': '(and|or|<<|>>>?|(?<!\\()\\/|[=!<>*%+\\-&^])?=(?!>)|[!%^*\\/~?:]|\\-?\\-(?!>)|\\+\\+?|<>|<|>|&&?|\\.\\.\\.?|\\|\\|?|\\b(?<![\\.\\$])(and|or|is|isnt|not|super)(?!\\s*:)\\b'
+        'name': 'keyword.operator.spoon'
+      }
+      {
+        'match': ','
+        'name': 'meta.delimiter.object.comma.spoon'
+      }
+      {
+        'match': '\\.'
+        'name': 'meta.delimiter.method.period.spoon'
+      }
+      {
+        'match': '\\{|\\}'
+        'name': 'meta.brace.curly.spoon'
+      }
+      {
+        'match': '\\(|\\)'
+        'name': 'meta.brace.round.spoon'
+      }
+      {
+        'match': '\\[|\\]'
+        'name': 'meta.brace.square.spoon'
+      }
+    ]
+
+  'variables':
+    'patterns': [
+      {
+        'match': '\\b(?<!\\.)self(?!\\s*[:=][^=])\\b'
+        'name': 'variable.language.self.spoon'
+      }
+      {
+        'match': '\\b(?<!\\.)this(?!\\s*[:=][^=])\\b'
+        'name': 'variable.language.this.spoon'
+      }
+    ]
+
   'class':
     'patterns': [
       {
@@ -163,8 +176,18 @@
       }
     ]
 
-  'destructured_assign':
+  'assign':
     'patterns': [
+      {
+        'match': '([a-zA-Z$_][-\\w$]*)\\s*(?!::)(?:(:)|((?:or|and|[-+\\/&%*?])?=)(?![>=]))(?!(\\s*\\(.*\\))?\\s*([=-]>))'
+        'captures':
+          '1':
+            'name': 'variable.assignment.spoon'
+          '2':
+            'name': 'punctuation.separator.key-value'
+          '3':
+            'name': 'keyword.operator.spoon'
+      }
       {
         'begin': '(?<=\\s|^)(\\{)(?=.+?\\}\\s+[:=])'
         'beginCaptures':
