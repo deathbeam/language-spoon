@@ -25,7 +25,7 @@
     'include': '#annotations'
   }
   {
-    'include': '#keywords'
+    'include': '#constants'
   }
   {
     'include': '#operator'
@@ -86,7 +86,7 @@
       }
     ]
 
-  'keywords':
+  'constants':
     'patterns': [
       {
         'match': '(?:(?:\\b[^-])|(?:^\\s*))(break|catch|continue|else|for|in|import|to|if|return|switch|throw|try|unless|until|when|while|loop|do)(?:(?:[^-]\\b)|(?:\\s*$))'
@@ -113,8 +113,28 @@
   'operators':
     'patterns': [
       {
-        'match': '(and|or|<<|>>>?|(?<!\\()\\/|[=!<>*%+\\-&^])?=(?!>)|[!%^*\\/~?:]|\\-?\\-(?!>)|\\+\\+?|<>|<|>|&&?|\\.\\.\\.?|\\|\\|?|\\b(?<![\\.\\$])(and|or|is|isnt|not)(?!\\s*:)\\b'
-        'name': 'keyword.operator.spoon'
+        'match': '(\\.\\.)'
+        'name': 'keyword.control.directive.spoon'
+      }
+      {
+        'match': '((?:\\b(?:isnt|is)\\b)|(?:==|!=|<=|>=|<>|<|>))'
+        'name': 'keyword.operator.comparison.spoon'
+      }
+      {
+        'match': '((?:\\b(?:not|and|or)\\b)|(?:!|&&|\\|\\|))'
+        'name': 'keyword.operator.logical.spoon'
+      }
+      {
+        'match': '(=)'
+        'name': 'keyword.operator.assignment.spoon'
+      }
+      {
+        'match': '(\\-\\-|\\+\\+)'
+        'name': 'keyword.operator.increment-decrement.spoon'
+      }
+      {
+        'match': '(\\-|\\+|\\*|\\/|%)'
+        'name': 'keyword.operator.arithmetic.spoon'
       }
       {
         'match': ','
