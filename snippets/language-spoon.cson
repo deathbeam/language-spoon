@@ -1,8 +1,11 @@
 '.source.spoon, .dyn.caret.begin.document':
   '#!/usr/bin/env spoon':
-    'prefix': 'sp'
+    'prefix': 'spoon'
     'body': '#!/usr/bin/env spoon\n'
 '.source.spoon':
+  'Block comment':
+    'prefix': '###'
+    'body': '###\n$1\n### $0'
   'Array comprehension':
     'prefix': 'fora'
     'body': 'for ${1:name} in ${2:array}\n  ${0:# body...}'
