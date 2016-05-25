@@ -217,7 +217,7 @@
           '4':
             'name': 'keyword.operator.spoon'
           '5':
-            'name': 'entity.other.inherited-class.spoon'
+            'name': 'meta.type.annotation.spoon'
           '6':
             'name': 'storage.type.function.spoon'
         'name': 'meta.function.spoon'
@@ -233,7 +233,7 @@
           '1':
             'name': 'keyword.operator.spoon'
           '2':
-            'name': 'entity.other.inherited-class.spoon'
+            'name': 'meta.type.annotation.spoon'
           '3':
             'name': 'storage.type.function.spoon'
 
@@ -380,7 +380,7 @@
           '2':
             'name': 'keyword.operator.spoon'
           '3':
-            'name': 'entity.other.inherited-class.spoon'
+            'name': 'meta.type.annotation.spoon'
         'match': '@(?:([a-zA-Z_\\$][-\\w]*)(?:\\s*(:)\\s*(\\w[-\\w]+))?)?'
         'name': 'variable.other.readwrite.instance.spoon'
       }
@@ -397,7 +397,7 @@
           '3':
             'name': 'keyword.operator.spoon'
           '4':
-            'name': 'entity.other.inherited-class.spoon'
+            'name': 'meta.type.annotation.spoon'
         'match': '([a-zA-Z\\$_][-\\w]*(\\.\\w[-\\w]*)*)(?:\\s*(:)\\s*(\\w[-\\w]+))?'
         'name': 'variable.assignment.spoon'
       }
