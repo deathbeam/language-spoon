@@ -213,11 +213,6 @@
 
         'match': '(?:\\(([^()]*)?\\)\\s*(?:\\s*(:)\\s*(\\w[-\\w]+))?)?\\s*([=-]>)'
         'name': 'meta.inline.function.spoon'
-        'patterns': [
-          {
-            'include': '#keywords'
-          }
-        ]
       }
       {
         'match': '''(?x)
@@ -238,11 +233,6 @@
           '6':
             'name': 'storage.type.function.spoon'
         'name': 'meta.function.spoon'
-        'patterns': [
-          {
-            'include': '#keywords'
-          }
-        ]
       }
       {
         'captures':
@@ -255,11 +245,6 @@
 
         'match': '(?:\\s*(:)\\s*(\\w[-\\w]+))?\\s*([=-]>)'
         'name': 'meta.inline.function.spoon'
-        'patterns': [
-          {
-            'include': '#keywords'
-          }
-        ]
       }
       {
         'match': '@?\\b(?!class|extends|decodeURI(Component)?|encodeURI(Component)?|parse(Float|Int)|import)(\\w[-\\w]*)(?=\\s+(?!(to|in|is|isnt|and|or|for|else|when|not|if)\\b)(?=(@?\\w[-\\w]*|\\->|\\-\\d|\\[|\\{|\"|\'))|(?=[\\(!]))'
