@@ -28,7 +28,7 @@
     'include': '#constants'
   }
   {
-    'include': '#operator'
+    'include': '#operators'
   }
   {
     'include': '#class'
@@ -89,23 +89,23 @@
   'constants':
     'patterns': [
       {
-        'match': '(?:(?:\\b[^-])|(?:^\\s*))(break|catch|continue|else|for|in|import|to|if|return|switch|throw|try|unless|until|when|while|loop|do)(?:(?:[^-]\\b)|(?:\\s*$))'
+        'match': '(?:(?:\\b(?!-))|(?:^\\s*))(break|catch|continue|else|for|in|import|to|if|return|switch|throw|try|unless|until|when|while|loop|do)(?:(?:(?!-)\\b)|(?:\\s*$))'
         'name': 'keyword.control.spoon'
       }
       {
-        'match': '(?:(?:\\b[^-])|(?:^\\s*))(true|false|null)(?:(?:[^-]\\b)|(?:\\s*$))'
+        'match': '(?:(?:\\b(?!-))|(?:^\\s*))(true|false|null)(?:(?:(?!-)\\b)|(?:\\s*$))'
         'name': 'constant.language.spoon'
       }
       {
-        'match': '(?:(?:\\b[^-])|(?:^\\s*))(self)(?:(?:[^-]\\b)|(?:\\s*$))'
+        'match': '(?:(?:\\b(?!-))|(?:^\\s*))(self)(?:(?:(?!-)\\b)|(?:\\s*$))'
         'name': 'variable.language.self.spoon'
       }
       {
-        'match': '(?:(?:\\b[^-])|(?:^\\s*))(this)(?:(?:[^-]\\b)|(?:\\s*$))'
+        'match': '(?:(?:\\b(?!-))|(?:^\\s*))(this)(?:(?:(?!-)\\b)|(?:\\s*$))'
         'name': 'variable.language.this.spoon'
       }
       {
-        'match': '(?:(?:\\b[^-])|(?:^\\s*))(super)(?:(?:[^-]\\b)|(?:\\s*$))'
+        'match': '(?:(?:\\b(?!-))|(?:^\\s*))(super)(?:(?:(?!-)\\b)|(?:\\s*$))'
         'name': 'variable.language.super.spoon'
       }
     ]
