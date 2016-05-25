@@ -25,7 +25,7 @@
     'include': '#annotations'
   }
   {
-    'include': '#constants'
+    'include': '#keywords'
   }
   {
     'include': '#operators'
@@ -86,7 +86,7 @@
       }
     ]
 
-  'constants':
+  'keywords':
     'patterns': [
       {
         'match': '(?:(?:\\b(?!-))|(?:^\\s*))(break|catch|continue|else|for|in|import|to|if|return|switch|throw|try|unless|until|when|while|loop|do)(?:(?:(?!-)\\b)|(?:\\s*$))'
@@ -108,6 +108,14 @@
         'match': '(?:(?:\\b(?!-))|(?:^\\s*))(super)(?:(?:(?!-)\\b)|(?:\\s*$))'
         'name': 'variable.language.super.spoon'
       }
+      {
+        'captures':
+          '1':
+            'name': 'entity.name.type.package.spoon'
+          '2':
+            'name': 'entity.name.type.class.spoon'
+        'match':  '(\\b(([a-z][a-zA-Z0-9]*\\.)*)([A-Z]\\w*|\\*))'
+      }
     ]
 
   'operators':
@@ -127,6 +135,10 @@
       {
         'match': '(=)'
         'name': 'keyword.operator.assignment.spoon'
+      }
+      {
+        'match': '(:)'
+        'name': 'keyword.operator.type.spoon'
       }
       {
         'match': '(\\-\\-|\\+\\+)'
@@ -195,12 +207,17 @@
           '2':
             'name': 'keyword.operator.spoon'
           '3':
-            'name': 'entity.other.inherited-class.spoon'
+            'name': 'meta.type.annotation.spoon'
           '4':
             'name': 'storage.type.function.spoon'
 
         'match': '(?:\\(([^()]*)?\\)\\s*(?:\\s*(:)\\s*(\\w[-\\w]+))?)?\\s*([=-]>)'
         'name': 'meta.inline.function.spoon'
+        'patterns': [
+          {
+            'include': '#keywords'
+          }
+        ]
       }
       {
         'match': '''(?x)
@@ -221,12 +238,11 @@
           '6':
             'name': 'storage.type.function.spoon'
         'name': 'meta.function.spoon'
-      }
-      {
-        'match': '@?\\b(?!class|extends|decodeURI(Component)?|encodeURI(Component)?|parse(Float|Int)|import)(\\w[-\\w]*)(?=\\s+(?!(to|in|is|isnt|and|or|for|else|when|not|if)\\b)(?=(@?\\w[-\\w]*|\\->|\\-\\d|\\[|\\{|\"|\'))|(?=[\\(!]))'
-        'captures':
-          '4':
-            'name': 'entity.name.function.spoon'
+        'patterns': [
+          {
+            'include': '#keywords'
+          }
+        ]
       }
       {
         'captures':
@@ -239,6 +255,17 @@
 
         'match': '(?:\\s*(:)\\s*(\\w[-\\w]+))?\\s*([=-]>)'
         'name': 'meta.inline.function.spoon'
+        'patterns': [
+          {
+            'include': '#keywords'
+          }
+        ]
+      }
+      {
+        'match': '@?\\b(?!class|extends|decodeURI(Component)?|encodeURI(Component)?|parse(Float|Int)|import)(\\w[-\\w]*)(?=\\s+(?!(to|in|is|isnt|and|or|for|else|when|not|if)\\b)(?=(@?\\w[-\\w]*|\\->|\\-\\d|\\[|\\{|\"|\'))|(?=[\\(!]))'
+        'captures':
+          '4':
+            'name': 'entity.name.function.spoon'
       }
     ]
 
@@ -382,7 +409,7 @@
           '3':
             'name': 'meta.type.annotation.spoon'
         'match': '@(?:([a-zA-Z_\\$][-\\w]*)(?:\\s*(:)\\s*(\\w[-\\w]+))?)?'
-        'name': 'variable.other.readwrite.instance.spoon'
+        'name': 'meta.variable.other.readwrite.instance.spoon'
       }
     ]
 

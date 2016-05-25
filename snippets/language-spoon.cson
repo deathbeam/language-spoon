@@ -1,13 +1,17 @@
-'.source.coffee':
-  'Array Comprehension':
+'.source.spoon, .dyn.caret.begin.document':
+  '#!/usr/bin/env spoon':
+    'prefix': 'sp'
+    'body': '#!/usr/bin/env spoon\n'
+'.source.spoon':
+  'Array comprehension':
     'prefix': 'fora'
     'body': 'for ${1:name} in ${2:array}\n  ${0:# body...}'
-  'Function (bound)':
-    'prefix': 'bfun'
+  'Procedure':
+    'prefix': 'pro'
     'body': '(${1:args}) =>\n  ${0:# body...}'
   'Class':
     'prefix': 'cla'
-    'body': 'class ${1:ClassName}${2: extends ${3:Ancestor}}\n\n  ${4:constructor: (${5:args}) ->\n    ${6:# body...}}\n  $7'
+    'body': 'class ${1:ClassName}${2: extends ${3:Ancestor}}\n\n  ${4:new: (${5:args}) =>\n    ${6:# body...}}\n  $7'
   'Else if':
     'prefix': 'elif'
     'body': 'else if ${1:condition}\n  ${0:# body...}'
@@ -34,43 +38,25 @@
     'body': 'switch ${1:object}\n  when ${2:value}\n    ${0:# body...}'
   'Ternary If':
     'prefix': 'ifte'
-    'body': 'if ${1:condition} then ${2:value} else ${3:other}'
+    'body': 'if ${1:condition} do ${2:value} else ${3:other}'
   'Try .. Catch':
     'prefix': 'try'
     'body': 'try\n  $1\ncatch ${2:error}\n  $3'
   'Unless':
     'prefix': 'unl'
-    'body': '${1:action} unless ${2:condition}'
+    'body': 'unless ${1:condition}\n  ${0:# body...}'
+  'Until':
+    'prefix': 'unt'
+    'body': 'until ${1:condition}\n  ${0:# body...}'
+  'While':
+    'prefix': 'whi'
+    'body': 'while ${1:condition}\n  ${0:# body...}'
   'Subheader':
     'prefix': '/3'
     'body': '# $1\n# -------------------------\n$0'
-  'log':
-    'prefix': 'log'
-    'body': 'console.log $0'
-  'warn':
-    'prefix': 'warn'
-    'body': 'console.warn $0'
-  'error':
-    'prefix': 'error'
-    'body': 'console.error $0'
-  'require':
-    'prefix': 'req'
-    'body': '${1:sys} $3= require \'${2:${1:sys}}\'$4'
-  'Describe block':
-    'prefix': 'de',
-    'body': 'describe "${1:description}", ->\n  ${2:body}'
-  'It block':
-    'prefix': 'i',
-    'body': 'it "$1", ->\n  $2'
-  'Before each':
-    'prefix': 'be',
-    'body': 'beforeEach ->\n  $1'
-  'After each':
-    'prefix': 'af',
-    'body': 'afterEach ->\n  $1'
-  'Expectation':
-    'prefix': 'ex',
-    'body': 'expect($1).to$2'
+  'Import':
+    'prefix': 'imp'
+    'body': 'import ${1:module}'
   'Range array':
     'prefix': 'ra',
     'body': '[[$1, $2], [$3, $4]]'
@@ -79,11 +65,8 @@
     'body': '[$1, $2]'
   'Key-value pair':
     'prefix': 'kv',
-    'body': '${1:\'${2:key}\'}: ${3:value}'
-  'Create Jasmine spy':
-    'prefix': 'spy',
-    'body': 'jasmine.createSpy(\'${1:description}\')$2'
-'.string.quoted.double.coffee:not(.string .source), .string.quoted.double.heredoc.coffee:not(.string .source)':
+    'body': '${1:"${2:key}"}: ${3:value}'
+'.string.quoted.double.spoon:not(.string .source), .string.quoted.double.heredoc.spoon:not(.string .source)':
   'Interpolated Code':
     'prefix': '#'
     'body': '#{$1}$2'
