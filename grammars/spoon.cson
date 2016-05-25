@@ -214,7 +214,7 @@
         'name': 'meta.function.spoon'
       }
       {
-        'match': '@?\\b(?!class|extends|decodeURI(Component)?|encodeURI(Component)?|parse(Float|Int)|import)([-\\w]+)(?=\\s+(?!(to|in|is|isnt|and|or|for|else|when|not|if)\\b)(?=(@?[-\\w]+|\\->|\\-\\d|\\[|\\{|\"|\'))|(?=[\\(!]))'
+        'match': '@?\\b(?!class|extends|decodeURI(Component)?|encodeURI(Component)?|parse(Float|Int)|import)(\\w[-\\w]*)(?=\\s+(?!(to|in|is|isnt|and|or|for|else|when|not|if)\\b)(?=(@?\\w[-\\w]*|\\->|\\-\\d|\\[|\\{|\"|\'))|(?=[\\(!]))'
         'captures':
           '4':
             'name': 'entity.name.function.spoon'
@@ -228,7 +228,7 @@
   'assign':
     'patterns': [
       {
-        'match': '([a-zA-Z$_][-\\w$]*)\\s*(?!::)(?:(:)|((?:or|and|[-+\\/&%*?])?=)(?![>=]))(?!(\\s*\\(.*\\))?\\s*([=-]>))'
+        'match': '([a-zA-Z$_][-\\w$]*)\\s*(?:((?:or|and|[-+\\/&%*?])?=)(?![>=]))(?!(\\s*\\(.*\\))?\\s*([=-]>))'
         'captures':
           '1':
             'name': 'variable.assignment.spoon'
@@ -238,11 +238,11 @@
             'name': 'keyword.operator.spoon'
       }
       {
-        'begin': '(?<=\\s|^)(\\{)(?=.+?\\}\\s+[:=])'
+        'begin': '(?<=\\s|^)(\\{)(?=.+?\\}\\s+=)'
         'beginCaptures':
           '0':
             'name': 'keyword.operator.spoon'
-        'end': '(\\}\\s*[:=])'
+        'end': '(\\}\\s*=)'
         'endCaptures':
           '0':
             'name': 'keyword.operator.spoon'
@@ -260,11 +260,11 @@
         ]
       }
       {
-        'begin': '(?<=\\s|^)(\\[)(?=.+?\\]\\s+[:=])'
+        'begin': '(?<=\\s|^)(\\[)(?=.+?\\]\\s+=)'
         'beginCaptures':
           '0':
             'name': 'keyword.operator.spoon'
-        'end': '(\\]\\s*[:=])'
+        'end': '(\\]\\s*=)'
         'endCaptures':
           '0':
             'name': 'keyword.operator.spoon'
@@ -357,7 +357,14 @@
   'instance_variable':
     'patterns': [
       {
-        'match': '(@)([a-zA-Z_\\$][-\\w]*)?'
+        'captures':
+          '1':
+            'name': 'variable.other.readwrite.instance.spoon'
+          '2':
+            'name': 'keyword.operator.spoon'
+          '3':
+            'name': 'entity.other.inherited-class.spoon'
+        'match': '@(?:([a-zA-Z_\\$][-\\w]*)(?:\\s*(:)\\s*(\\w[-\\w]+))?)?'
         'name': 'variable.other.readwrite.instance.spoon'
       }
     ]
@@ -368,7 +375,13 @@
         'captures':
           '1':
             'name': 'variable.assignment.spoon'
-        'match': '([a-zA-Z\\$_][-\\w]*(\\.[-\\w]+)*)'
+          '2':
+            'name': 'variable.assignment.spoon'
+          '3':
+            'name': 'keyword.operator.spoon'
+          '4':
+            'name': 'entity.other.inherited-class.spoon'
+        'match': '([a-zA-Z\\$_][-\\w]*(\\.\\w[-\\w]*)*)(?:\\s*(:)\\s*(\\w[-\\w]+))?'
         'name': 'variable.assignment.spoon'
       }
     ]
