@@ -193,8 +193,13 @@
           '1':
             'name': 'variable.parameter.function.spoon'
           '2':
+            'name': 'keyword.operator.spoon'
+          '3':
+            'name': 'entity.other.inherited-class.spoon'
+          '4':
             'name': 'storage.type.function.spoon'
-        'match': '(\\([^()]*?\\))\\s*([=-]>)'
+
+        'match': '(?:\\(([^()]*)?\\)\\s*(?:\\s*(:)\\s*(\\w[-\\w]+))?)?\\s*([=-]>)'
         'name': 'meta.inline.function.spoon'
       }
       {
@@ -202,7 +207,7 @@
                     (?<=^|\\s)
                     (?=@?[a-zA-Z\\$_])
                     @?([a-zA-Z\\$_][-\\w]*)(\\$|:|\\.)?\\s*
-                    (?=[:=](\\s*\\(.*\\))?\\s*([=-]>))
+                    (?=[:=](\\s*\\(.*\\))?\\s*(?:\\s*(:)\\s*(\\w[-\\w]+))?\\s*([=-]>))
                   '''
         'captures':
           '1':
@@ -210,6 +215,10 @@
           '3':
             'name': 'variable.parameter.function.spoon'
           '4':
+            'name': 'keyword.operator.spoon'
+          '5':
+            'name': 'entity.other.inherited-class.spoon'
+          '6':
             'name': 'storage.type.function.spoon'
         'name': 'meta.function.spoon'
       }
@@ -220,8 +229,16 @@
             'name': 'entity.name.function.spoon'
       }
       {
-        'match': '[=-]>'
-        'name': 'storage.type.function.spoon'
+        'captures':
+          '1':
+            'name': 'keyword.operator.spoon'
+          '2':
+            'name': 'entity.other.inherited-class.spoon'
+          '3':
+            'name': 'storage.type.function.spoon'
+
+        'match': '(?:\\s*(:)\\s*(\\w[-\\w]+))?\\s*([=-]>)'
+        'name': 'meta.inline.function.spoon'
       }
     ]
 
