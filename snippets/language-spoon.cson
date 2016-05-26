@@ -27,15 +27,12 @@
   'If':
     'prefix': 'if'
     'body': 'if ${1:condition}\n  ${0:# body...}'
-  'Object comprehension':
-    'prefix': 'foro'
-    'body': 'for ${1:key}, ${2:value} of ${3:Object}\n  ${0:# body...}'
-  'Range comprehension (exclusive)':
-    'prefix': 'forrex'
-    'body': 'for ${1:name} in [${2:start}...${3:finish}]${4: by ${5:step}}\n  ${0:# body...}'
-  'Range comprehension (inclusive)':
+  'Map comprehension':
+    'prefix': 'form'
+    'body': 'for ${1:key}, ${2:value} in ${3:map}\n  ${0:# body...}'
+  'Range comprehension':
     'prefix': 'forr'
-    'body': 'for ${1:name} in [${2:start}..${3:finish}]${4: by ${5:step}}\n  ${0:# body...}'
+    'body': 'for ${1:name} in ${2:start} to ${3:finish}\n  ${0:# body...}'
   'Switch':
     'prefix': 'swi'
     'body': 'switch ${1:object}\n  when ${2:value}\n    ${0:# body...}'
@@ -54,9 +51,6 @@
   'While':
     'prefix': 'whi'
     'body': 'while ${1:condition}\n  ${0:# body...}'
-  'Subheader':
-    'prefix': '/3'
-    'body': '# $1\n# -------------------------\n$0'
   'Import':
     'prefix': 'imp'
     'body': 'import ${1:module}'
