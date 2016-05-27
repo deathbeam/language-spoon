@@ -89,7 +89,7 @@
   'keywords':
     'patterns': [
       {
-        'match': '(?:(?:\\b(?!-))|(?:^\\s*))(break|catch|continue|else|for|in|import|to|if|return|switch|throw|try|unless|until|when|while|loop|do)(?:(?:(?!-)\\b)|(?:\\s*$))'
+        'match': '(?:(?:\\b(?!-))|(?:^\\s*))(break|catch|continue|else|for|in|import|to|ifdef|if|return|switch|throw|try|unless|until|when|while|loop|do)(?:(?:(?!-)\\b)|(?:\\s*$))'
         'name': 'keyword.control.spoon'
       }
       {
@@ -247,7 +247,7 @@
         'name': 'meta.inline.function.spoon'
       }
       {
-        'match': '@?\\b(?!class|extends|decodeURI(Component)?|encodeURI(Component)?|parse(Float|Int)|import)(\\w[-\\w]*)(?=\\s+(?!(to|in|is|isnt|and|or|for|else|when|not|if)\\b)(?=(@?\\w[-\\w]*|\\->|\\-\\d|\\[|\\{|\"|\'))|(?=[\\(!]))'
+        'match': '@?\\b(?!class|extends|decodeURI(Component)?|encodeURI(Component)?|parse(Float|Int)|import)(\\w[-\\w]*)(?=\\s+(?!(to|in|is|isnt|and|or|for|else|when|not|ifdef|if)\\b)(?=(@?\\w[-\\w]*|\\->|\\-\\d|\\[|\\{|\"|\'))|(?=[\\(!]))'
         'captures':
           '4':
             'name': 'entity.name.function.spoon'
